@@ -6,5 +6,4 @@
         -> use Cloud build
 * This app was built during the live code session at the Angular Warsaw #21 meeting.
 
-![](simple_btc_wallet.gif)
-
+<img src="simple_btc_wallet.gif" height="500">
