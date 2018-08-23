@@ -14,7 +14,7 @@ export class AddressesComponent implements OnInit {
 
     
  
-	newAddress: string = "1sdenispaL9bgBCyvQLXHY7YvfCDDMYVE";
+	newAddress: string = "";
 	totalAmount$: Observable<number>;
 	addresses$: Observable<BtcAddress[]>;
 
