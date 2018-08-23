@@ -1,38 +1,36 @@
-	<StackLayout class="home-panel">
+<StackLayout class="home-panel">
 
+	<StackLayout *ngIf="totalAmount$ | async as total;else nobtc">
 
+		<StackLayout height="50%">
+			<RadRadialGauge subtitle="{{total | number}}">
+				<RadialScale tkRadialGaugeScales minimum="0" maximum="{{getGaugeMax(total)}}" radius="0.90">
+					<ScaleStyle tkRadialScaleStyle labelsCount="2" lineThickness="0" ticksOffset="0"></ScaleStyle>
 
-		<StackLayout *ngIf="totalAmount$ | async as total;else nobtc">
+					<RadialBarIndicator tkRadialScaleIndicators minimum="0" maximum="{{getGaugeMax(total)*0.33}}" location="0.97">
+						<BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#9DCA56"></BarIndicatorStyle>
+					</RadialBarIndicator>
 
-			<StackLayout height="50%">
-				<RadRadialGauge subtitle="{{total | number}}">
-					<RadialScale tkRadialGaugeScales minimum="0" maximum="{{getGaugeMax(total)}}" radius="0.90">
-						<ScaleStyle tkRadialScaleStyle labelsCount="2"    lineThickness="0" ticksOffset="0"></ScaleStyle>
+					<RadialBarIndicator tkRadialScaleIndicators minimum="{{getGaugeMax(total)*0.33}}" maximum="{{getGaugeMax(total)*0.66}}" location="0.97">
+						<BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#F0C44D"></BarIndicatorStyle>
+					</RadialBarIndicator>
 
-						<RadialBarIndicator tkRadialScaleIndicators minimum="0" maximum="{{getGaugeMax(total)*0.33}}" location="0.97"
-						 >
-							<BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#9DCA56"></BarIndicatorStyle>
-						</RadialBarIndicator>
-						<RadialBarIndicator tkRadialScaleIndicators minimum="{{getGaugeMax(total)*0.33}}" maximum="{{getGaugeMax(total)*0.66}}"
-						 location="0.97"  >
-							<BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#F0C44D"
-							></BarIndicatorStyle>
-						</RadialBarIndicator>
-						<RadialBarIndicator tkRadialScaleIndicators minimum="{{getGaugeMax(total)*0.66}}" maximum="{{getGaugeMax(total)}}" 
-						location="0.97"  >
-							<BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#E27633"
-							 isAnimated="true" animationDuration="2000"></BarIndicatorStyle>
-						</RadialBarIndicator>
-		
-						<RadialNeedle tkRadialScaleIndicators [value]="total" isAnimated="true" animationDuration="2000"></RadialNeedle>
-					</RadialScale>
-				</RadRadialGauge>
-			</StackLayout>
+					<RadialBarIndicator tkRadialScaleIndicators minimum="{{getGaugeMax(total)*0.66}}" maximum="{{getGaugeMax(total)}}" location="0.97">
+						<BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#E27633" isAnimated="true" animationDuration="2000"></BarIndicatorStyle>
+					</RadialBarIndicator>
 
-			<Label text="{{total | number}}" fontSize="38px" textAlignment="center"></Label>
-			<Label text="BTC" fontSize="28px" textAlignment="center"></Label>
+					<RadialNeedle tkRadialScaleIndicators [value]="total" isAnimated="true" animationDuration="2000"></RadialNeedle>
+				</RadialScale>
+			</RadRadialGauge>
 		</StackLayout>
-		<ng-template #nobtc>
-			<Label text="No Bitcoins" fontSize="28px" textAlignment="center"></Label>
-		</ng-template>
+
+		<Label text="{{total | number}}" fontSize="38px" textAlignment="center"></Label>
+		<Label text="BTC" fontSize="28px" textAlignment="center"></Label>
+
 	</StackLayout>
+
+	<ng-template #nobtc>
+		<Label text="No Bitcoins" fontSize="28px" textAlignment="center"></Label>
+	</ng-template>
+
+</StackLayout>
