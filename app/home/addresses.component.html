@@ -1,0 +1,22 @@
+<StackLayout class="home-panel">
+	<TextField [(ngModel)]="newAddress" hint="Enter BTC address..." style="font-size: 14px;margin-top: 40px;"></TextField>
+	<Button text="Add" (tap)="onAdd()" style="width: 50%;margin-bottom: 30px;margin-top: 30px;" class="btn btn-primary"></Button>
+	<Label text="Total: {{totalAmount$ | async}} BTC" fontWeight="bold" textAlignment="left"></Label>
+</StackLayout>
+
+
+<ScrollView >
+
+	<ListView class="list-group" [items]="addresses$ | async" style="height: 100%;">
+		<ng-template let-address="item">
+			<FlexboxLayout flexDirection="row" class="list-group-item" justifyContent="space-between" alignItems="center">
+				<FlexboxLayout flexDirection="column">
+					<Label text="{{getShortAddress(address.address)}}" fontSize="12px;"></Label>
+					<Label text="{{address.balance}} BTC" fontSize="13px"></Label>
+				</FlexboxLayout>
+				<Button text="Del" (tap)="onDel(address)" class="btn btn-warn" fontSize="12px"></Button>
+			</FlexboxLayout>
+		</ng-template>
+	</ListView>
+
+</ScrollView>
