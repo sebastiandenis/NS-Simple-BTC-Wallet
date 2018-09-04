@@ -1,5 +1,5 @@
 {
-  "appId": "org.nativescript.blankng",
+  "appId": "org.nativescript.simplebtcwallet",
   "minSdkVersion": 22,
-  "targetSdkVersion": 24
+  "targetSdkVersion": 26
 }

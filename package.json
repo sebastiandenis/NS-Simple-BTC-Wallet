@@ -1,10 +1,10 @@
 {
-  "description": "Simple Bitcoin Wallet",
-  "license": "SEE LICENSE IN <your-license-filename>",
-  "readme": "NativeScript Application",
-  "repository": "<fill-your-repository-here>",
+  "description": "NS Simple BTC Wallet",
+  "license": "Open source",
+  "readme": "NativeScript Application developed during Angular Warsaw #21",
+  "repository": "https://github.com/sebastiandenis/Simple-Bitcoin-Wallet",
   "nativescript": {
-    "id": "org.nativescript.blankng",
+    "id": "org.nativescript.simplebtcwallet",
     "tns-android": {
       "version": "4.2.0"
     },
