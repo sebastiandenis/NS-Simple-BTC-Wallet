@@ -9,7 +9,6 @@ import { Observable } from "rxjs";
 	styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-    gaugeValue: number = 2;
 
 
 	totalAmount$: Observable<number>;
@@ -20,6 +19,7 @@ export class DashboardComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.totalAmount$ = this.btc.getTotalAmount();
+		this.btc.recalculateTotal();
 	}
 
 	getGaugeMax(amount: number): number {
