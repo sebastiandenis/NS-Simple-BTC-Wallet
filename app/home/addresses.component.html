@@ -1,7 +1,7 @@
 <StackLayout class="home-panel">
-	<TextField [(ngModel)]="newAddress" hint="Enter BTC address..." style="font-size: 14px;margin-top: 40px;"></TextField>
-	<Button text="Add" (tap)="onAdd()" style="width: 50%;margin-bottom: 30px;margin-top: 30px;" class="btn btn-primary"></Button>
-	<Label text="Total: {{totalAmount$ | async}} BTC" fontWeight="bold" textAlignment="left"></Label>
+	<TextField [(ngModel)]="newAddress" hint="Enter BTC address..." style="font-size: 13;margin-top: 15;"></TextField>
+	<Button text="Add" (tap)="onAdd()" style="width: 150;margin-bottom: 20;margin-top: 10;" class="btn btn-primary"></Button>
+	<Label text="Total: {{totalAmount$ | async}} BTC" fontSize="15" fontWeight="bold" textAlignment="left"></Label>
 </StackLayout>
 
 
@@ -11,10 +11,10 @@
 		<ng-template let-address="item">
 			<FlexboxLayout flexDirection="row" class="list-group-item" justifyContent="space-between" alignItems="center">
 				<FlexboxLayout flexDirection="column">
-					<Label text="{{getShortAddress(address.address)}}" fontSize="12px;"></Label>
-					<Label text="{{address.balance}} BTC" fontSize="13px"></Label>
+					<Label text="{{getShortAddress(address.address)}}" fontSize="11;"></Label>
+					<Label text="{{address.balance}} BTC" fontSize="12"></Label>
 				</FlexboxLayout>
-				<Button text="Del" (tap)="onDel(address)" class="btn btn-warn" fontSize="12px"></Button>
+				<Button text="Del" (tap)="onDel(address)" class="btn btn-warn" fontSize="12"></Button>
 			</FlexboxLayout>
 		</ng-template>
 	</ListView>

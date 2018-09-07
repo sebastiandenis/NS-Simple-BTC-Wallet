@@ -3,3 +3,13 @@
 	font-size: 20;
 	margin: 15;
 }
+
+.fa {
+    font-family: "Font Awesome 5 Free", "fa-solid-900";
+}
+
+.refresh-btn {
+    font-size: 16;
+	width: 50;
+	margin-top: 25;
+}

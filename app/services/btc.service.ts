@@ -58,6 +58,16 @@ export class BtcService {
         localStorage.setItem('btc', this.addresses$.getValue().map(item => item.address).toString());
     }
 
+    refresh(): void {
+        const temp = this.addresses$.getValue().slice();
+        this.addresses$.next([]);
+        temp.forEach((item: BtcAddress) => {
+            this.addAddress(item);
+        });
+        this.addresses$.next(temp);
+        this.recalculateTotal();
+    }
+
     load(): void {
         let a = localStorage.getItem('btc');
         if (a && a.length > 0) {

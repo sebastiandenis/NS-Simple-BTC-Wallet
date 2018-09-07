@@ -2,7 +2,7 @@
 
 	<StackLayout *ngIf="totalAmount$ | async as total;else nobtc">
 
-		<StackLayout height="50%">
+		<StackLayout height="200">
 			<RadRadialGauge subtitle="{{total | number}}">
 				<RadialScale tkRadialGaugeScales minimum="0" maximum="{{getGaugeMax(total)}}" radius="0.90">
 					<ScaleStyle tkRadialScaleStyle labelsCount="2" lineThickness="0" ticksOffset="0"></ScaleStyle>
@@ -11,11 +11,13 @@
 						<BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#9DCA56"></BarIndicatorStyle>
 					</RadialBarIndicator>
 
-					<RadialBarIndicator tkRadialScaleIndicators minimum="{{getGaugeMax(total)*0.33}}" maximum="{{getGaugeMax(total)*0.66}}" location="0.97">
+					<RadialBarIndicator tkRadialScaleIndicators minimum="{{getGaugeMax(total)*0.33}}" maximum="{{getGaugeMax(total)*0.66}}"
+					 location="0.97">
 						<BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#F0C44D"></BarIndicatorStyle>
 					</RadialBarIndicator>
 
-					<RadialBarIndicator tkRadialScaleIndicators minimum="{{getGaugeMax(total)*0.66}}" maximum="{{getGaugeMax(total)}}" location="0.97">
+					<RadialBarIndicator tkRadialScaleIndicators minimum="{{getGaugeMax(total)*0.66}}" maximum="{{getGaugeMax(total)}}"
+					 location="0.97">
 						<BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#E27633" isAnimated="true" animationDuration="2000"></BarIndicatorStyle>
 					</RadialBarIndicator>
 
@@ -24,13 +26,18 @@
 			</RadRadialGauge>
 		</StackLayout>
 
-		<Label text="{{total | number}}" fontSize="38px" textAlignment="center"></Label>
-		<Label text="BTC" fontSize="28px" textAlignment="center"></Label>
+		<Label text="{{total | number}}" fontSize="32" textAlignment="center"></Label>
+		<Label text="BTC" fontSize="20" textAlignment="center"></Label>
 
 	</StackLayout>
 
 	<ng-template #nobtc>
-		<Label text="No Bitcoins" fontSize="28px" textAlignment="center"></Label>
+		<Label text="No Bitcoins" fontSize="28" textAlignment="center"></Label>
 	</ng-template>
+	<StackLayout>
+		<Button text="&#xf2f1;" (tap)="onRefresh()" class="btn btn-primary fa refresh-btn"></Button>
+	</StackLayout>
+
+
 
 </StackLayout>

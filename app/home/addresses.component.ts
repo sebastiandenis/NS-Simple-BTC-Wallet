@@ -28,11 +28,13 @@ export class AddressesComponent implements OnInit {
 	}
 
 	onAdd(): void {
-		this.btc.addAddress({
-			balance: 0,
-			address: this.newAddress
-		});
-		this.newAddress = '';
+		if(this.newAddress){
+			this.btc.addAddress({
+				balance: 0,
+				address: this.newAddress
+			});
+			this.newAddress = '';
+		}
     }
 
     onDel(a: BtcAddress): void {
