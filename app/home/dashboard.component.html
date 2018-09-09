@@ -18,10 +18,10 @@
 
 					<RadialBarIndicator tkRadialScaleIndicators minimum="{{getGaugeMax(total)*0.66}}" maximum="{{getGaugeMax(total)}}"
 					 location="0.97">
-						<BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#E27633" isAnimated="true" animationDuration="2000"></BarIndicatorStyle>
+						<BarIndicatorStyle tkRadialBarIndicatorStyle fillColor="#E27633" ></BarIndicatorStyle>
 					</RadialBarIndicator>
 
-					<RadialNeedle tkRadialScaleIndicators [value]="total" isAnimated="true" animationDuration="2000"></RadialNeedle>
+					<RadialNeedle #needle tkRadialScaleIndicators [value]="total" isAnimated="true" animationDuration="2100"></RadialNeedle>
 				</RadialScale>
 			</RadRadialGauge>
 		</StackLayout>

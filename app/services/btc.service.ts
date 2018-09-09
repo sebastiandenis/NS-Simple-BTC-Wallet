@@ -59,6 +59,7 @@ export class BtcService {
     }
 
     refresh(): void {
+        this.totalAmount$.next(0);
         const temp = this.addresses$.getValue().slice();
         this.addresses$.next([]);
         temp.forEach((item: BtcAddress) => {

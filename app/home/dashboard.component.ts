@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { BtcService } from '../services/btc.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { RadialNeedle } from 'nativescript-ui-gauge';
 
 @Component({
   selector: 'Dashboard',
@@ -35,4 +36,5 @@ export class DashboardComponent implements OnInit {
   onRefresh(): void {
     this.btc.refresh();
   }
+
 }
