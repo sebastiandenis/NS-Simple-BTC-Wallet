@@ -27,11 +27,15 @@ export class FakeBtcService {
 }
 
 describe("AddressesComponent", () => {
-  beforeEach(
+  beforeEach(()=>{
     nsTestBedBeforeEach(
       [AddressesComponent],
       [{ provide: BtcService, useValue: new FakeBtcService() }]
-    )
+    );
+
+  }
+   
+
   );
   afterEach(nsTestBedAfterEach(false));
 
@@ -62,9 +66,25 @@ describe("AddressesComponent", () => {
 
       componentRef.instance.newAddress = "";
       componentRef.instance.onAdd();
+      
       expect(componentRef.instance.newAddress).toEqual("");
     });
   }));
+
+  it("BtcService.addAddress() function should be called when onAdd() and newAddress is not empty", ()=>{
+    return nsTestBedRender(AddressesComponent).then(fixture => {
+      const componentRef: ComponentRef<AddressesComponent> =
+        fixture.componentRef;
+      const service: BtcService = componentRef.instance.btc;  
+      spyOn(service,"addAddress");
+      componentRef.instance.newAddress = "test";
+      componentRef.instance.onAdd();
+      expect(service.addAddress).toHaveBeenCalled();
+    //  componentRef.instance.newAddress = "";
+    //  componentRef.instance.onAdd();
+    //  expect(service.addAddress).toHaveBeenCalledTimes(1);
+    });
+  });
 
 
 

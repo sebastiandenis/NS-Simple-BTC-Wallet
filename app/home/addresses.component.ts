@@ -19,7 +19,7 @@ export class AddressesComponent implements OnInit {
 	addresses$: Observable<BtcAddress[]>;
 
 
-	constructor(private btc: BtcService) {
+	constructor(public btc: BtcService) {
 	}
 
 	ngOnInit(): void {
