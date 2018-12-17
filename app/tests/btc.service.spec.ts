@@ -38,15 +38,15 @@ describe("BtcService", () => {
   });
 
   it("should initialize totalAmount$ with 0", async(() => {
-      service.getTotalAmount().subscribe((total: number)=>{
-        expect(total).toEqual(0);
-      });
+    service.getTotalAmount().subscribe((total: number) => {
+      expect(total).toEqual(0);
+    });
   }));
 
   it("should initialize addresses$ with empty array", async(() => {
-    service.getAddresses().subscribe((a: BtcAddress[])=>{
+    service.getAddresses().subscribe((a: BtcAddress[]) => {
       expect(a).toBeDefined();
       expect(a.length).toEqual(0);
     });
-}));
+  }));
 });
