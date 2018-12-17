@@ -1,6 +1,5 @@
 import "nativescript-angular/zone-js/testing.jasmine";
 import {
-  nsTestBedInit,
   nsTestBedBeforeEach,
   nsTestBedAfterEach,
   nsTestBedRender
