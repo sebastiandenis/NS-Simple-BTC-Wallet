@@ -8,24 +8,11 @@ import {
 
 import { async } from "@angular/core/testing";
 import { ComponentRef } from "@angular/core";
-import { BtcService, BtcAddress } from "~/services/btc.service";
+import { BtcService } from "~/services/btc.service";
 import { AddressesComponent } from "~/home/addresses.component";
-import { of, Observable } from "rxjs";
+import { FakeBtcService } from "./utils";
 
 nsTestBedInit();
-
-export class FakeBtcService {
-  addAddress(a: string): void {}
-  getTotalAmount(): Observable<number> {
-    return of();
-  }
-
-  getAddresses(): Observable<BtcAddress[]> {
-    return of();
-  }
-
-  removeAddress(): void {}
-}
 
 describe("AddressesComponent", () => {
   beforeEach(

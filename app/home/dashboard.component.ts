@@ -1,18 +1,17 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
-import { BtcService } from '../services/btc.service';
-import { Observable, Subscription } from 'rxjs';
-import { RadialNeedle } from 'nativescript-ui-gauge';
+import { Component, OnInit } from "@angular/core";
+import { BtcService } from "../services/btc.service";
+import { Observable } from "rxjs";
 
 @Component({
-  selector: 'Dashboard',
+  selector: "Dashboard",
   moduleId: module.id,
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  templateUrl: "./dashboard.component.html",
+  styleUrls: ["./dashboard.component.css"]
 })
 export class DashboardComponent implements OnInit {
   totalAmount$: Observable<number>;
 
-  constructor(private btc: BtcService) {}
+  constructor(public btc: BtcService) {}
 
   ngOnInit(): void {
     this.totalAmount$ = this.btc.getTotalAmount();
@@ -36,5 +35,4 @@ export class DashboardComponent implements OnInit {
   onRefresh(): void {
     this.btc.refresh();
   }
-
 }

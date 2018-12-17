@@ -41,3 +41,7 @@ testem.log
 Thumbs.db
 TESTS-NativeScript_
 
+# typscript compiled js files
+/app/**/*.js
+/app/**/*.map
+
