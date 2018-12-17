@@ -10,7 +10,6 @@ import { async } from "@angular/core/testing";
 import { ComponentRef } from "@angular/core";
 import { BtcService, BtcAddress } from "~/services/btc.service";
 import { AddressesComponent } from "~/home/addresses.component";
-import { HttpClient, HttpHandler } from "@angular/common/http";
 import { of, Observable } from "rxjs";
 
 nsTestBedInit();
@@ -24,19 +23,18 @@ export class FakeBtcService {
   getAddresses(): Observable<BtcAddress[]> {
     return of();
   }
+
+  removeAddress(): void {}
 }
 
 describe("AddressesComponent", () => {
-  beforeEach(()=>{
+  beforeEach(
     nsTestBedBeforeEach(
       [AddressesComponent],
       [{ provide: BtcService, useValue: new FakeBtcService() }]
-    );
-
-  }
-   
-
+    )
   );
+
   afterEach(nsTestBedAfterEach(false));
 
   it("Component should exist", async(() => {
@@ -47,14 +45,29 @@ describe("AddressesComponent", () => {
     });
   }));
 
-
-  it("property newAddress should be empty at component start", async(() => {
+  it("properties should be defined at component start", async(() => {
     return nsTestBedRender(AddressesComponent).then(fixture => {
       const componentRef: ComponentRef<AddressesComponent> =
         fixture.componentRef;
+      expect(componentRef.instance.addresses$).toBeDefined();
+      expect(componentRef.instance.totalAmount$).toBeDefined();
       expect(componentRef.instance.newAddress).toEqual("");
     });
   }));
+
+  it("BtcService.getAddress and getTotalAmount function should be called when ngOnInit() is called", () => {
+    return nsTestBedRender(AddressesComponent).then(fixture => {
+      const componentRef: ComponentRef<AddressesComponent> =
+        fixture.componentRef;
+      const service: BtcService = componentRef.instance.btc;
+      spyOn(service, "getAddresses");
+      spyOn(service, "getTotalAmount");
+      componentRef.instance.ngOnInit();
+      expect(service.getAddresses).toHaveBeenCalled();
+      expect(service.getTotalAmount).toHaveBeenCalled();
+
+    });
+  });
 
   it("property newAddress should be empty after onAdd() call", async(() => {
     return nsTestBedRender(AddressesComponent).then(fixture => {
@@ -66,27 +79,36 @@ describe("AddressesComponent", () => {
 
       componentRef.instance.newAddress = "";
       componentRef.instance.onAdd();
-      
+
       expect(componentRef.instance.newAddress).toEqual("");
     });
   }));
 
-  it("BtcService.addAddress() function should be called when onAdd() and newAddress is not empty", ()=>{
+  it("BtcService.addAddress() function should be called when onAdd() and newAddress is not empty", () => {
     return nsTestBedRender(AddressesComponent).then(fixture => {
       const componentRef: ComponentRef<AddressesComponent> =
         fixture.componentRef;
-      const service: BtcService = componentRef.instance.btc;  
-      spyOn(service,"addAddress");
+      const service: BtcService = componentRef.instance.btc;
+      spyOn(service, "addAddress");
       componentRef.instance.newAddress = "test";
       componentRef.instance.onAdd();
       expect(service.addAddress).toHaveBeenCalled();
-    //  componentRef.instance.newAddress = "";
-    //  componentRef.instance.onAdd();
-    //  expect(service.addAddress).toHaveBeenCalledTimes(1);
+      componentRef.instance.newAddress = "";
+      componentRef.instance.onAdd();
+      expect(service.addAddress).toHaveBeenCalledTimes(1);
     });
   });
 
-
+  it("BtcService.removeAddress() should be called when onDel() was called", () => {
+    return nsTestBedRender(AddressesComponent).then(fixture => {
+      const componentRef: ComponentRef<AddressesComponent> =
+        fixture.componentRef;
+      const service: BtcService = componentRef.instance.btc;
+      spyOn(service, "removeAddress");
+      componentRef.instance.onDel(null);
+      expect(service.removeAddress).toHaveBeenCalled();
+    });
+  });
 
   it("getShortAddress should return short address", async(() => {
     return nsTestBedRender(AddressesComponent).then(fixture => {
@@ -99,9 +121,7 @@ describe("AddressesComponent", () => {
       );
       expect(shortAddress).toContain("...");
 
-      shortAddress = componentRef.instance.getShortAddress(
-        ""
-      );
+      shortAddress = componentRef.instance.getShortAddress("");
       expect(shortAddress).toContain("...");
     });
   }));
