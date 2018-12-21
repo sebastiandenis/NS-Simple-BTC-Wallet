@@ -12,6 +12,7 @@ export class BtcService {
 
     private totalAmount$ = new BehaviorSubject<number>(0);
     private addresses$ = new BehaviorSubject<BtcAddress[]>([]);
+    public readonly URL = "https://blockchain.info/q/addressbalance/";
 
     constructor(private http: HttpClient){}
 
@@ -39,7 +40,7 @@ export class BtcService {
     }
 
     updateBalance(a: BtcAddress): void {
-        this.http.get('https://blockchain.info/q/addressbalance/' + a.address, { responseType: 'text' })
+        this.http.get(this.URL + a.address, { responseType: 'text' })
             .subscribe((resp: string) => {
                 a.balance = parseInt(resp) / 100000000; //1 BTC = 100 000 000 Satoshi
                 this.recalculateTotal();
