@@ -1,5 +1,1 @@
-{
-  "appId": "org.nativescript.simplebtcwallet",
-  "minSdkVersion": 22,
-  "targetSdkVersion": 26
-}
+{"appId":"com.sebastiandenis.simplebtcwallet","minSdkVersion":22,"targetSdkVersion":26}

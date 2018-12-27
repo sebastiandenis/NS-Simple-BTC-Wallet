@@ -6,7 +6,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BtcService } from "./services/btc.service";
 
-require("./nativescript-localstorage");
+require("nativescript-localstorage");
 
 
 @NgModule({
