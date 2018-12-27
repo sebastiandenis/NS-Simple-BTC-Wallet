@@ -1,18 +1,11 @@
 import { BtcService, BtcAddress } from "~/services/btc.service";
-import {
-  nsTestBedBeforeEach,
-  nsTestBedAfterEach
-} from "nativescript-angular/testing";
-import { async, TestBed, tick, fakeAsync } from "@angular/core/testing";
-import { HttpClient, HttpHandler } from "@angular/common/http";
+import { async, TestBed } from "@angular/core/testing";
 import {
   HttpClientTestingModule,
   HttpTestingController
 } from "@angular/common/http/testing";
 import { ApplicationInitStatus } from "@angular/core";
 import { FakeLocalStorage } from "./utils";
-
-require("../nativescript-localstorage");
 
 localStorage = new FakeLocalStorage();
 

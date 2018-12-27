@@ -1,6 +1,6 @@
 import { Observable, of } from "rxjs";
 import { BtcAddress } from "~/services/btc.service";
-require("../nativescript-localstorage");
+require("nativescript-localstorage");
 
 export class FakeBtcService {
   addAddress(a: string): void {}
